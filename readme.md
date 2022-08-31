@@ -40,3 +40,26 @@ brew install redis
 Redis does not support direct windows installation. There is a workaround. Redis team has created an official windows redis installation steps in a video which is available in Youtube.
 
 Redis Windows Install -  https://www.youtube.com/watch?v=1psWME8UH_0
+
+
+```
+prateekashtikar@Prateeks-MacBook-Pro Redis-with-Spring-WebFlux % ls
+README.md		docker-compose.yml
+prateekashtikar@Prateeks-MacBook-Pro Redis-with-Spring-WebFlux % docker-compose up -d 
+[+] Running 7/7
+ ⠿ redis Pulled                                                                                                                                        19.8s
+   ⠿ 5b1423465504 Pull complete                                                                                                                        11.9s
+   ⠿ 4216a986e3df Pull complete                                                                                                                        12.0s
+   ⠿ f74254280149 Pull complete                                                                                                                        12.1s
+   ⠿ 1bc2dce56d35 Pull complete                                                                                                                        12.4s
+   ⠿ 391d2a4c9e19 Pull complete                                                                                                                        12.5s
+   ⠿ 044896002e52 Pull complete                                                                                                                        12.5s
+[+] Running 2/2
+ ⠿ Network redis-with-spring-webflux_default  Created                                                                                                   0.0s
+ ⠿ Container redis                            Started                                                                                                   0.5s
+prateekashtikar@Prateeks-MacBook-Pro Redis-with-Spring-WebFlux % docker exec -it redis bash
+root@redis:/data# redis-cli
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379>
+```
