@@ -26,16 +26,14 @@ services:
 
 # Mac User (who does not want to use docker):
 
-Run below commands
-
+- Run below commands
 ```
 brew update
 brew install redis
-Launch 2 terminals.
-
-Run this command in terminal 1 redis-server
-
-Run this command in terminal 2 redis-cli
+```
+- Launch 2 terminals.
+- Run this command in terminal 1 redis-server
+- Run this command in terminal 2 redis-cli
 
 # Windows User (who does not want to use docker):
 
