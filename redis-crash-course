@@ -44,3 +44,27 @@ OK
 "some value"
 127.0.0.1:6379>
 ```
+
+# Accessing All keys
+
+1. Keys (deprecated)
+  - keys * - all the keys
+  - keys user:* - all the keys starting with user
+  - keys user:*:name
+    - "user:2:name"
+    - "user:1:name"
+  - `keys user:*:nan
+     (empty array)
+     
+2. Scan (better solution)
+ - scan 0 - all keys from page 0
+   - it returns reference to the next page - "6"
+
+ - scan 6
+   - another portion of scan - "27"
+
+ - scan 27
+   - back to page "0"
+   
+- scan 0 MATCH user:*:name COUNT 5 - match pattern, limit by count, page 0
+
