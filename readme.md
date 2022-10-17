@@ -63,3 +63,6 @@ root@redis:/data# redis-cli
 PONG
 127.0.0.1:6379>
 ```
+
+
+`config set notify-keyspace-events AKE`
