@@ -1,0 +1,82 @@
+
+# Storing Simple Key values
+
+```
+prateekashtikar@Prateeks-MacBook-Pro Redis-with-Spring-WebFlux % docker exec -it redis bash
+root@redis:/data# redis-cli
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> set a b
+OK
+127.0.0.1:6379> get a
+"b"
+127.0.0.1:6379> get c
+(nil)
+127.0.0.1:6379> set a 1
+OK
+127.0.0.1:6379> get a
+"1"
+127.0.0.1:6379> set a 100.23
+OK
+127.0.0.1:6379> get a
+"100.23"
+127.0.0.1:6379> set a ...................big.................
+OK
+127.0.0.1:6379> get a
+"...................big................."
+127.0.0.1:6379> set 1 10
+OK
+127.0.0.1:6379> get 1
+"10"
+127.0.0.1:6379> set true false
+OK
+127.0.0.1:6379> get true
+"false"
+127.0.0.1:6379> set user:1:name sam
+OK
+127.0.0.1:6379> set user:2:name jake
+OK
+127.0.0.1:6379> get user:1:name
+"sam"
+127.0.0.1:6379> set somekey "some value"
+OK
+127.0.0.1:6379> get somekey
+"some value"
+127.0.0.1:6379>
+```
+
+# Accessing All keys
+
+1. Keys (deprecated)
+  - keys * - all the keys
+  - keys user:* - all the keys starting with user
+  - keys user:*:name
+    - "user:2:name"
+    - "user:1:name"
+  - `keys user:*:nan
+     (empty array)
+     
+2. Scan (better solution)
+ - scan 0 - all keys from page 0
+   - it returns reference to the next page - "6"
+
+ - scan 6
+   - another portion of scan - "27"
+
+ - scan 27
+   - back to page "0"
+   
+- scan 0 MATCH user:*:name COUNT 5 - match pattern, limit by count, page 0
+
+----
+
+# Removing Keys
+1. Delete one (or list)
+del key [key ...]
+del user:8:name
+del user:1:name user:2:name
+
+2. Delete All
+
+3. flushdb
+
