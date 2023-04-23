@@ -66,3 +66,15 @@ PONG
 
 
 `config set notify-keyspace-events AKE`
+
+# Access Redis from within docker
+
+```
+prateekashtikar@Prateeks-MacBook-Pro Documents % docker exec -it redis bash
+root@redis:/data# redis-cli 
+127.0.0.1:6379> ping 
+PONG
+127.0.0.1:6379> 
+```
+
+
