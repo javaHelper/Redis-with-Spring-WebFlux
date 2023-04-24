@@ -449,3 +449,27 @@ OK
 OK
 127.0.0.1:6379>
 ```
+----------
+
+# Exists command
+
+```
+127.0.0.1:6379> keys *
+1) "a"
+127.0.0.1:6379> EXISTS a
+(integer) 1  (1 means present)
+127.0.0.1:6379>
+127.0.0.1:6379> EXISTS b
+(integer) 0
+127.0.0.1:6379>
+
+
+127.0.0.1:6379> set user:1:session token ex 10
+OK
+127.0.0.1:6379> EXISTS user:1:session
+(integer) 1
+127.0.0.1:6379> EXISTS user:1:session
+(integer) 0
+127.0.0.1:6379>
+
+```
