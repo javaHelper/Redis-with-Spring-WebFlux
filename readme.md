@@ -471,8 +471,12 @@ OK
 127.0.0.1:6379> EXISTS user:1:session
 (integer) 0
 127.0.0.1:6379>
+```
+-------
 
+# INCR and DECR commands
 
+```
 127.0.0.1:6379> FLUSHDB
 OK
 127.0.0.1:6379> set a 1
@@ -516,6 +520,31 @@ OK
 (integer) 1
 127.0.0.1:6379> get prod:a:visit
 "2"   (how many times Prod:a:visit visited)     
+127.0.0.1:6379>
+
+127.0.0.1:6379> set a 1.02
+OK
+127.0.0.1:6379> get a
+"1.02"
+127.0.0.1:6379> INCRBYFLOAT a 0.3
+"1.32"
+127.0.0.1:6379> INCRBYFLOAT a -0.3
+"1.02"
+127.0.0.1:6379> INCRBYFLOAT a -0.3
+"0.72"
+127.0.0.1:6379>
+
+127.0.0.1:6379> set sam 100
+OK
+127.0.0.1:6379> INCR sam
+(integer) 101
+127.0.0.1:6379> INCRBY sam 20
+(integer) 121
+127.0.0.1:6379> INCRBY sam 20
+(integer) 141
+
+127.0.0.1:6379> DECRBY sam 10
+(integer) 131
 127.0.0.1:6379>
 ```
 
