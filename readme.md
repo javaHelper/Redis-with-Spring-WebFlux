@@ -346,5 +346,44 @@ OK
 127.0.0.1:6379>
 ```
 
+# Remove everthing from DB
+
+```
+127.0.0.1:6379> FLUSHDB
+OK
+127.0.0.1:6379>
+```
+
+# Expring Keys Part-1
+
+```
+127.0.0.1:6379> set a b ex 10   (will expire in 10 sec)
+OK
+127.0.0.1:6379> keys *
+1) "a"
+127.0.0.1:6379> get a
+"b"
+127.0.0.1:6379> get a
+"b"
+127.0.0.1:6379> get a
+(nil)
+127.0.0.1:6379>
+
+# You can check the time left to expire
+
+127.0.0.1:6379> set a b ex 10
+OK
+127.0.0.1:6379> ttl a
+(integer) 8
+127.0.0.1:6379> ttl a
+(integer) 7
+127.0.0.1:6379> ttl a
+(integer) 5
+127.0.0.1:6379> ttl a
+(integer) 2
+127.0.0.1:6379> ttl a
+(integer) -2
+127.0.0.1:6379>
+```
 
 
