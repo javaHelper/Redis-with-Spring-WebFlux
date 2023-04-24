@@ -548,5 +548,23 @@ OK
 127.0.0.1:6379>
 ```
 
+--------
+
+# Rate Limiting 
+
+```
+127.0.0.1:6379> set user:1:lives 3 ex 1800
+OK
+127.0.0.1:6379> ttl user:1:lives
+(integer) 1791
+127.0.0.1:6379> DECR user:1:lives
+(integer) 2
+127.0.0.1:6379> DECR user:1:lives
+(integer) 1
+127.0.0.1:6379> DECR user:1:lives
+(integer) 0
+127.0.0.1:6379>
+```
+
 
 
