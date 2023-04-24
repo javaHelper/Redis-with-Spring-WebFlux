@@ -142,5 +142,88 @@ OK
 127.0.0.1:6379> 
 ```
 
+# Accessing All keys
+
+```
+127.0.0.1:6379> KEYS *
+1) "user:!:name"
+2) "true"
+3) "."
+4) "............big............"
+5) "1"
+6) "user:2:name"
+7) "somekey"
+8) "a"
+9) "user:1:name"
+127.0.0.1:6379> 
+
+127.0.0.1:6379> KEYS user*
+1) "user:!:name"
+2) "user:2:name"
+3) "user:1:name"
+127.0.0.1:6379>
+```
+
+# scan command involves with pagination
+
+```
+127.0.0.1:6379> SCAN 0
+1) "0"
+2) 1) "true"
+   2) "user:!:name"
+   3) "user:2:name"
+   4) "1"
+   5) "a"
+   6) "user:1:name"
+   7) "."
+   8) "............big............"
+   9) "somekey"
+127.0.0.1:6379>
+
+# Create some keys for Pagination
+
+127.0.0.1:6379> set user:1:name 1
+OK
+127.0.0.1:6379> set user:2:name 2
+OK
+127.0.0.1:6379> set user:3:name 3
+OK
+127.0.0.1:6379> set user:4:name 4
+OK
+127.0.0.1:6379> set user:5:name 5
+OK
+127.0.0.1:6379> set user:6:name 6
+OK
+127.0.0.1:6379> set user:7:name 7
+OK
+127.0.0.1:6379> set user:8:name 8
+OK
+127.0.0.1:6379> set user:9:name 9
+OK
+127.0.0.1:6379> set user:10:name 10
+OK
+127.0.0.1:6379> set user:11:name 11
+OK
+127.0.0.1:6379> set user:12:name 12
+OK
+127.0.0.1:6379> set user:13:name 13
+OK
+127.0.0.1:6379> set user:14:name 14
+OK
+127.0.0.1:6379> set user:15:name 15
+OK
+127.0.0.1:6379> set user:16:name 16
+OK
+127.0.0.1:6379> set user:17:name 17
+OK
+127.0.0.1:6379> set user:18:name 18
+OK
+127.0.0.1:6379> set user:19:name 19
+OK
+127.0.0.1:6379> set user:20:name 20
+OK
+127.0.0.1:6379> 
+
+```
 
 
