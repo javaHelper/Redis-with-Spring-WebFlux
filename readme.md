@@ -751,4 +751,39 @@ There is no concept of Empty List or stck, if list contains no element, key will
 127.0.0.1:6379> 
 
 ```
+--------
+
+# Redis Set
+
+```
+127.0.0.1:6379> FLUSHDB
+OK
+127.0.0.1:6379> SADD users 1 2 3
+(integer) 3
+127.0.0.1:6379> SADD users 4
+(integer) 1
+127.0.0.1:6379> SADD users 5
+(integer) 1
+127.0.0.1:6379> scard users
+(integer) 5
+127.0.0.1:6379> SMEMBERS users
+1) "1"
+2) "2"
+3) "3"
+4) "4"
+5) "5"
+127.0.0.1:6379> sadd users 4.5
+(integer) 1
+127.0.0.1:6379> sadd users 10
+(integer) 1
+127.0.0.1:6379> SMEMBERS users   (it doesn't maintain orders)
+1) "2"
+2) "1"
+3) "5"
+4) "3"
+5) "10"
+6) "4.5"
+7) "4"
+127.0.0.1:6379>
+```
 
