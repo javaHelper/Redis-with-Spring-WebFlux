@@ -629,12 +629,32 @@ hash
 127.0.0.1:6379> 
 # How to check if key has certain fields
 127.0.0.1:6379> HEXISTS user:1 age 
-(integer) 1  (field exists)
+(integer) 1
 127.0.0.1:6379> HEXISTS user:1 status
-(integer) 0  (field not exists)
+(integer) 0
+127.0.0.1:6379> hgetall user:1
+1) "name"
+2) "sam"
+3) "age"
+4) "10"
+5) "city"
+6) "atlanta"
+127.0.0.1:6379> HDEL user:1 age
+(integer) 1
+127.0.0.1:6379> hgetall user:1
+1) "name"
+2) "sam"
+3) "city"
+4) "atlanta"
 127.0.0.1:6379>
 ```
 
+--------
+
+# List and Queues
+
+```
+```
 
 
 
