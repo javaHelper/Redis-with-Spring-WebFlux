@@ -123,10 +123,23 @@ OK
 127.0.0.1:6379>
 ```
 
-# Best Practice
+# Best Practice - Storing Simple Keys
 
 ```
-
+127.0.0.1:6379> set user:1:name sam
+OK
+127.0.0.1:6379> set user:2:name jake
+OK
+127.0.0.1:6379> get user:1:name
+"sam"
+127.0.0.1:6379> get user:2:name
+"jake"
+127.0.0.1:6379>
+127.0.0.1:6379> set somekey "some value"
+OK
+127.0.0.1:6379> get somekey
+"some value"
+127.0.0.1:6379> 
 ```
 
 
