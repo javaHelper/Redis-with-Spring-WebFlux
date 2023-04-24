@@ -785,5 +785,86 @@ OK
 6) "4.5"
 7) "4"
 127.0.0.1:6379>
+
+# if we add same values again, it will not add 
+127.0.0.1:6379> SADD users 4
+(integer) 0
+127.0.0.1:6379>
+
+# Check if something present in the set
+127.0.0.1:6379> SISMEMBER users 5
+(integer) 1
+127.0.0.1:6379> SISMEMBER users 100
+(integer) 0
+127.0.0.1:6379>
+127.0.0.1:6379> SREM users 100
+(integer) 0
+127.0.0.1:6379> SREM users 5
+(integer) 1
+127.0.0.1:6379> SISMEMBER users 5
+(integer) 0
+127.0.0.1:6379> SISMEMBER users 
+(error) ERR wrong number of arguments for 'sismember' command
+127.0.0.1:6379> SMEMBERS users
+1) "2"
+2) "1"
+3) "3"
+4) "10"
+5) "4.5"
+6) "4"
+127.0.0.1:6379> SPOP users
+"1"
+127.0.0.1:6379> SCARD users
+(integer) 5
+127.0.0.1:6379> SPOP users
+"4.5"
+127.0.0.1:6379> SCARD users
+(integer) 4
+127.0.0.1:6379> 
 ```
+
+----------
+
+# Set intersection and unioin
+
+```
+127.0.0.1:6379> FLUSHDB
+OK
+127.0.0.1:6379> SADD skill:java 1 2 3 4
+(integer) 4
+127.0.0.1:6379> SADD skill:js 2 3 4
+(integer) 3
+127.0.0.1:6379> SADD skill:aws 4 5 6
+(integer) 3
+127.0.0.1:6379> SINTER skill:java skill:js skill:aws
+1) "4"
+127.0.0.1:6379> SUNION skill:java skill:js
+1) "1"
+2) "2"
+3) "3"
+4) "4"
+127.0.0.1:6379> sadd candidate:criminal 4 5 6
+(integer) 3
+127.0.0.1:6379> SDIFF skill:java candidate:criminal
+1) "1"
+2) "2"
+3) "3"
+127.0.0.1:6379> SINTERSTORE java-js skill:java skill:js
+(integer) 3
+127.0.0.1:6379> keys *
+1) "java-js"
+2) "skill:js"
+3) "skill:java"
+4) "skill:aws"
+5) "candidate:criminal"
+127.0.0.1:6379> SCARD java-js
+(integer) 3
+127.0.0.1:6379> SMEMBERS java-js
+1) "2"
+2) "3"
+3) "4"
+127.0.0.1:6379>
+```
+---------------
+
 
