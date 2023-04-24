@@ -496,4 +496,28 @@ OK
 127.0.0.1:6379> get a
 "101"
 127.0.0.1:6379>
+
+# Here redis will automatically create and increment
+127.0.0.1:6379> INCR bb
+(integer) 1
+127.0.0.1:6379> INCR bb
+(integer) 2
+127.0.0.1:6379> DECR bb
+(integer) 1
+127.0.0.1:6379> DECR bb
+(integer) 0
+127.0.0.1:6379> INCR prod:a:visit
+(integer) 1
+127.0.0.1:6379> INCR prod:b:visit
+(integer) 1
+127.0.0.1:6379> INCR prod:a:visit
+(integer) 2
+127.0.0.1:6379> INCR prod:c:visit
+(integer) 1
+127.0.0.1:6379> get prod:a:visit
+"2"
+127.0.0.1:6379>
 ```
+
+
+
