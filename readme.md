@@ -226,4 +226,41 @@ OK
 
 ```
 
+```
+127.0.0.1:6379> scan 0
+1) "22" -> Use this to get next set of keys
+2)  1) "user:19:name"
+    2) "true"
+    3) "user:9:name"
+    4) "user:20:name"
+    5) "user:14:name"
+    6) "user:10:name"
+    7) "user:!:name"
+    8) "user:2:name"
+    9) "1"
+   10) "user:12:name"
+127.0.0.1:6379> scan 22
+1) "3" -> Use this to get next set of keys
+2)  1) "user:6:name"
+    2) "user:13:name"
+    3) "user:1:name"
+    4) "a"
+    5) "............big............"
+    6) "."
+    7) "user:15:name"
+    8) "user:11:name"
+    9) "somekey"
+   10) "user:18:name"
+   11) "user:7:name"
+127.0.0.1:6379> scan 3
+1) "0" -> Use this to get next set of keys
+2) 1) "user:16:name"
+   2) "user:3:name"
+   3) "user:5:name"
+   4) "user:17:name"
+   5) "user:4:name"
+   6) "user:8:name"
+```
+
+
 
