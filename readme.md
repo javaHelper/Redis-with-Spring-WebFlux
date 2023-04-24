@@ -604,6 +604,37 @@ OK
 hash
 127.0.0.1:6379> TYPE user:2
 hash
+
+127.0.0.1:6379> EXPIRE user:2 10
+(integer) 1
+127.0.0.1:6379> ttl user:2
+(integer) 6
+127.0.0.1:6379> keys *
+1) "user:1"
+127.0.0.1:6379> keys *
+1) "user:1"
+127.0.0.1:6379>
+
+# If I want to access all keys only 
+
+127.0.0.1:6379> HKEYS user:1
+1) "name"
+2) "age"
+3) "city"
+# If I want to access all values only
+127.0.0.1:6379> HVALS user:1
+1) "sam"
+2) "10"
+3) "atlanta"
+127.0.0.1:6379> 
+# How to check if key has certain fields
+127.0.0.1:6379> HEXISTS user:1 age 
+(integer) 1  (field exists)
+127.0.0.1:6379> HEXISTS user:1 status
+(integer) 0  (field not exists)
+127.0.0.1:6379>
 ```
+
+
 
 
