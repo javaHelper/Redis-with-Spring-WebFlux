@@ -670,7 +670,35 @@ list
 1) "sam"
 2) "mike"
 127.0.0.1:6379>
+127.0.0.1:6379> LPOP users
+"sam"
+127.0.0.1:6379> LRANGE users 0 -1
+1) "mike"
+2) "jake"
+127.0.0.1:6379> LPOP users
+"mike"
+127.0.0.1:6379> LPOP users
+"jake"
+127.0.0.1:6379> LPOP users
+(nil)
+127.0.0.1:6379> LLEN users
+(integer) 0
+127.0.0.1:6379>
+127.0.0.1:6379> RPUSH users 1 2 3 4 5 6
+(integer) 6
+127.0.0.1:6379> LLEN users
+(integer) 6
+127.0.0.1:6379> LPOP users
+"1"
+127.0.0.1:6379> LPOP users 2
+1) "2"
+2) "3"
+127.0.0.1:6379> LRANGE users 0 -1
+1) "4"
+2) "5"
+3) "6"
+127.0.0.1:6379>
 ```
-
+----------
 
 
