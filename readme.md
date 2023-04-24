@@ -340,6 +340,10 @@ OK
 127.0.0.1:6379> DEL user:100:name
 (integer) 0
 127.0.0.1:6379>
+# delete multiple keys
+127.0.0.1:6379> DEL user:1:name user:2:name
+(integer) 2
+127.0.0.1:6379>
 ```
 
 
