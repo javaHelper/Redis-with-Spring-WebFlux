@@ -262,5 +262,38 @@ OK
    6) "user:8:name"
 ```
 
+# Use regular expression with scan command
+
+```
+127.0.0.1:6379> SCAN 0 MATCH user*
+1) "22"
+2) 1) "user:19:name"
+   2) "user:9:name"
+   3) "user:20:name"
+   4) "user:14:name"
+   5) "user:10:name"
+   6) "user:!:name"
+   7) "user:2:name"
+   8) "user:12:name"
+127.0.0.1:6379> SCAN 22 MATCH user*
+1) "3"
+2) 1) "user:6:name"
+   2) "user:13:name"
+   3) "user:1:name"
+   4) "user:15:name"
+   5) "user:11:name"
+   6) "user:18:name"
+   7) "user:7:name"
+127.0.0.1:6379> SCAN 3 MATCH user*
+1) "0"
+2) 1) "user:16:name"
+   2) "user:3:name"
+   3) "user:5:name"
+   4) "user:17:name"
+   5) "user:4:name"
+   6) "user:8:name"
+127.0.0.1:6379> 
+```
+
 
 
