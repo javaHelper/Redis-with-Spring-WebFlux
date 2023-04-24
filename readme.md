@@ -566,5 +566,44 @@ OK
 127.0.0.1:6379>
 ```
 
+----
+
+# Hash Part-1
+
+```
+127.0.0.1:6379> FLUSHDB
+OK
+127.0.0.1:6379> HSET user:1 name sam age 10 city atlanta
+(integer) 3
+127.0.0.1:6379> keys *
+1) "user:1"
+127.0.0.1:6379> HGETALL user:1
+1) "name"
+2) "sam"
+3) "age"
+4) "10"
+5) "city"
+6) "atlanta"
+127.0.0.1:6379> HGET user:1 name
+"sam"
+127.0.0.1:6379> HGET user:1 age
+"10"
+127.0.0.1:6379> HGET user:1 city
+"atlanta"
+127.0.0.1:6379> 
+
+127.0.0.1:6379> hset user:2 birthYear 2023 status active
+(integer) 2
+127.0.0.1:6379> HGETALL user:2
+1) "birthYear"
+2) "2023"
+3) "status"
+4) "active"
+127.0.0.1:6379> 
+127.0.0.1:6379> TYPE user:1
+hash
+127.0.0.1:6379> TYPE user:2
+hash
+```
 
 
