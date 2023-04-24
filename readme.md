@@ -515,7 +515,7 @@ OK
 127.0.0.1:6379> INCR prod:c:visit
 (integer) 1
 127.0.0.1:6379> get prod:a:visit
-"2"
+"2"   (how many times Prod:a:visit visited)     
 127.0.0.1:6379>
 ```
 
