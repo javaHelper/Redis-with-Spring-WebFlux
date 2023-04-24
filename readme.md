@@ -295,5 +295,52 @@ OK
 127.0.0.1:6379> 
 ```
 
+# If I want to see only 3
+
+```
+127.0.0.1:6379> SCAN 0 MATCH user* count 3
+1) "24"
+2) 1) "user:19:name"
+   2) "user:9:name"
+127.0.0.1:6379>
+```
+
+# Removing Keys
+
+```
+127.0.0.1:6379> keys user*
+ 1) "user:16:name"
+ 2) "user:3:name"
+ 3) "user:15:name"
+ 4) "user:12:name"
+ 5) "user:5:name"
+ 6) "user:9:name"
+ 7) "user:11:name"
+ 8) "user:13:name"
+ 9) "user:19:name"
+10) "user:!:name"
+11) "user:6:name"
+12) "user:17:name"
+13) "user:4:name"
+14) "user:8:name"
+15) "user:20:name"
+16) "user:14:name"
+17) "user:10:name"
+18) "user:2:name"
+19) "user:18:name"
+20) "user:7:name"
+21) "user:1:name"
+127.0.0.1:6379> 
+
+# For ex: remove user:8
+127.0.0.1:6379> DEL user:8:name
+(integer) 1
+127.0.0.1:6379>
+# If you want to delete key which doesn't present
+127.0.0.1:6379> DEL user:100:name
+(integer) 0
+127.0.0.1:6379>
+```
+
 
 
