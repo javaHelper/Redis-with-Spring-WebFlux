@@ -389,13 +389,63 @@ OK
 OK
 127.0.0.1:6379> ttl a
 (integer) 8
-127.0.0.1:6379> expire a 60  (increase the expiry by 60)
+127.0.0.1:6379> expire a 60  (increase the expiry by 60 sec)
 (integer) 1
 127.0.0.1:6379> ttl a
 (integer) 58
 127.0.0.1:6379> ttl a
 (integer) 54
 127.0.0.1:6379>
+
+
+127.0.0.1:6379> set a b exat 4324234234 (Unix time)
+OK
+127.0.0.1:6379> ttl a
+(integer) 2641886167
+127.0.0.1:6379> ttl b
+(integer) -2
+127.0.0.1:6379> ttl b 
+
+127.0.0.1:6379> set b c px 3000 (millisec)
+OK
+127.0.0.1:6379> ttl b
+(integer) 1
+127.0.0.1:6379> ttl b
+(integer) -2
+127.0.0.1:6379> 
+
+# Although I changed the value, still keeping the TTL continue
+
+127.0.0.1:6379> set a b ex 60
+OK
+127.0.0.1:6379> TTL a
+(integer) 55
+127.0.0.1:6379> get a
+"b"
+127.0.0.1:6379> set a c keepttl
+OK
+127.0.0.1:6379> TTL a
+(integer) 45
+127.0.0.1:6379>
 ```
+------
 
+# Set options -XX/NX
 
+Note: XX means it's present, NX means it's not present
+
+```
+127.0.0.1:6379> FLUSHDB
+OK
+127.0.0.1:6379> set a b xx
+(nil)
+127.0.0.1:6379> get a
+(nil)
+127.0.0.1:6379> set a b nx
+OK
+127.0.0.1:6379> set a c nx (only if a not present)
+(nil)
+127.0.0.1:6379> set a c xx
+OK
+127.0.0.1:6379>
+```
