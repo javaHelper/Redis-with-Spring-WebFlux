@@ -654,6 +654,22 @@ hash
 # List and Queues
 
 ```
+127.0.0.1:6379> RPUSH users sam mike jake
+(integer) 3
+127.0.0.1:6379> keys *
+1) "users"
+127.0.0.1:6379> TYPE users
+list
+127.0.0.1:6379> LLEN users
+(integer) 3
+127.0.0.1:6379> LRANGE users 0 -1  (If you want to see everthing - if you dont know any elements)
+1) "sam"
+2) "mike"
+3) "jake"
+127.0.0.1:6379> LRANGE users 0 1
+1) "sam"
+2) "mike"
+127.0.0.1:6379>
 ```
 
 
