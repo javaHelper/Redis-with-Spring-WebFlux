@@ -384,6 +384,18 @@ OK
 127.0.0.1:6379> ttl a
 (integer) -2
 127.0.0.1:6379>
+
+127.0.0.1:6379> set a b ex 10
+OK
+127.0.0.1:6379> ttl a
+(integer) 8
+127.0.0.1:6379> expire a 60  (increase the expiry by 60)
+(integer) 1
+127.0.0.1:6379> ttl a
+(integer) 58
+127.0.0.1:6379> ttl a
+(integer) 54
+127.0.0.1:6379>
 ```
 
 
