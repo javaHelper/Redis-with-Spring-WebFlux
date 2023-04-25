@@ -938,4 +938,42 @@ OK
 (integer) 1
 127.0.0.1:6379>
 ```
+------
+
+# Redis Transaction
+
+```
+# This is on one terminal
+OK
+127.0.0.1:6379> SET user:2:balance 0
+OK
+127.0.0.1:6379> WATCH user:1:balance user:2:balance
+OK
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379(TX)> DECR user:1:balance
+QUEUED
+127.0.0.1:6379(TX)> INCR user:2:balance
+QUEUED
+
+# This is on other terminal
+127.0.0.1:6379> WATCH user:1:balance user:2:balance
+OK
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379(TX)> DECR user:1:balance
+QUEUED
+127.0.0.1:6379(TX)> INCR user:2:balance
+
+# Then execute below on 1st
+127.0.0.1:6379(TX)> EXEC
+1) (integer) 0
+2) (integer) 1
+127.0.0.1:6379>
+
+# Then execute on other
+127.0.0.1:6379(TX)> EXEC
+(nil)
+127.0.0.1:6379>
+```
 
