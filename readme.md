@@ -975,5 +975,34 @@ QUEUED
 127.0.0.1:6379(TX)> EXEC
 (nil)
 127.0.0.1:6379>
+
+127.0.0.1:6379> get user:1:balance
+"0"
+127.0.0.1:6379> get user:2:balance
+"1"
+127.0.0.1:6379>
 ```
+
+------------
+
+# saving data on disk
+
+```
+127.0.0.1:6379> set user:1:balance 1
+OK
+127.0.0.1:6379> set user:2:balance 0
+OK
+127.0.0.1:6379> BGSAVE
+Background saving started
+127.0.0.1:6379> 
+
+root@redis:/data# ls -al
+total 12
+drwxr-xr-x 2 redis redis 4096 Apr 25 12:11 .
+drwxr-xr-x 1 root  root  4096 Apr 23 15:39 ..
+-rw------- 1 redis redis  134 Apr 25 12:11 dump.rdb
+root@redis:/data# 
+```
+
+
 
