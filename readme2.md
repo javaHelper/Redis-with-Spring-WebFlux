@@ -50,3 +50,16 @@ OK
 
 ```
 
+# acl setuser [username] >[password] on
+
+|                                      |                               |
+|-------------                         |  -------------                |
+|allcommands / +@all                   |access to all commands in redis|
+|-get, -set...                         |no access to get set commands. |
+|+@set, +@hash, +@list                 |access to set and hash related commands|
+|allkeys / ~*                          |access to all the keys         |
+|~numbers:*|                           |access to keys starting with no.|
+
+
+
+
