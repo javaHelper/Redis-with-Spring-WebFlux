@@ -62,4 +62,54 @@ OK
 
 
 
-
+```
+127.0.0.1:6379> acl whoami
+"default"
+127.0.0.1:6379> acl list
+1) "user default on nopass ~* &* +@all"
+127.0.0.1:6379> ACL SETUSER sam >pass123 on allcommands allkeys 
+OK
+127.0.0.1:6379> acl list
+1) "user default on nopass ~* &* +@all"
+2) "user sam on #9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c ~* &* +@all"
+127.0.0.1:6379> auth sam pass123
+OK
+127.0.0.1:6379> acl whoami
+"sam"
+127.0.0.1:6379> set a 1
+OK
+127.0.0.1:6379> get a
+"1"
+127.0.0.1:6379> RPUSH users 1
+(integer) 1
+127.0.0.1:6379> keys *
+1) "users"
+2) "a"
+127.0.0.1:6379> auth default nopass
+OK
+127.0.0.1:6379> acl whoami
+"default"
+127.0.0.1:6379> acl setuser sam -get
+OK
+127.0.0.1:6379> acl list
+1) "user default on nopass ~* &* +@all"
+2) "user sam on #9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c ~* &* +@all -get"
+127.0.0.1:6379> auth sam pass123
+OK
+127.0.0.1:6379> acl whoami
+"sam"
+127.0.0.1:6379> keys *
+1) "users"
+2) "a"
+127.0.0.1:6379> get a
+(error) NOPERM this user has no permissions to run the 'get' command or its subcommand
+127.0.0.1:6379> 
+127.0.0.1:6379> auth default nopass
+OK
+127.0.0.1:6379> acl setuser sam -@dangerous 
+OK
+127.0.0.1:6379> acl list
+1) "user default on nopass ~* &* +@all"
+2) "user sam on #9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c ~* &* +@all -@dangerous -get"
+127.0.0.1:6379>
+```
