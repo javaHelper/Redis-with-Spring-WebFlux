@@ -17,7 +17,7 @@ services:
     - 6379:6379
 ```    
     
-2. Run this command. docker-compose up
+2. Run this command. `docker-compose up`
 
 3. Launch a separate terminal to access redis-cli
 
@@ -346,7 +346,7 @@ OK
 127.0.0.1:6379>
 ```
 
-# Remove everthing from DB
+# Remove everything from DB
 
 ```
 127.0.0.1:6379> FLUSHDB
@@ -354,7 +354,7 @@ OK
 127.0.0.1:6379>
 ```
 
-# Expring Keys Part-1
+# Expiring Keys Part-1
 
 ```
 127.0.0.1:6379> set a b ex 10   (will expire in 10 sec)
@@ -402,6 +402,8 @@ OK
 OK
 127.0.0.1:6379> ttl a
 (integer) 2641886167
+127.0.0.1:6379> ttl a
+(integer) ??  (some value will be reduce    )
 127.0.0.1:6379> ttl b
 (integer) -2
 127.0.0.1:6379> ttl b 
@@ -1003,6 +1005,3 @@ drwxr-xr-x 1 root  root  4096 Apr 23 15:39 ..
 -rw------- 1 redis redis  134 Apr 25 12:11 dump.rdb
 root@redis:/data# 
 ```
-
-
-
